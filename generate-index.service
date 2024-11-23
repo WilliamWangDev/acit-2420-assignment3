@@ -1,0 +1,12 @@
+[Unit]
+Description=Generate index.html
+After=network-online.target
+Wants=network-online.target
+
+# Source: freedesktop - Unit File Directives User/Group Identity
+# URL: https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html
+[Service]
+User=webgen
+Group=webgen
+ExecStart=/var/lib/webgen/bin/generate_index
+
