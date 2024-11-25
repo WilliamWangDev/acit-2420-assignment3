@@ -2,6 +2,50 @@
 
 This project sets up a systemd service and timer to generate an `index.html` file containing some system information, which is served by an `nginx` web server on an Arch Linux droplet. A firewall is configured using `ufw` for security.
 
+### Workflow
+This is the workflow of the project which can help us better understand the steps involved in the project.
+
+```plaintext
++---------------------+
+| Create System User  |
+| (webgen, home dir)  |
++----------+----------+
+           |
+           v
++----------------------------+
+| Generate Index Script      |
+| (Populates index.html)     |
++----------+-----------------+
+           |
+           v
++----------------------------+
+| Automate with Systemd      |
+| - Service: Runs script     |
+| - Timer: Runs daily        |
++----------+-----------------+
+           |
+           v
++----------------------------+
+| Serve with Nginx           |
+| - Configures HTTP server   |
+| - Serves index.html on port|
++----------+-----------------+
+           |
+           v
++----------------------------+
+| Secure with UFW            |
+| - SSH & HTTP allowed       |
+| - SSH rate-limited         |
++----------------------------+
+           |
+           v
++----------------------------+
+| Verify                     |
+| - Test index.html in       |
+|   browser                  |    
++----------------------------+
+```
+
 ## Setup Instructions
 
 ### 1. System User Setup
